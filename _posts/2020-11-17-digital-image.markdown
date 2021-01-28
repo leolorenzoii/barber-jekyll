@@ -105,7 +105,62 @@ This operation might be similar when you decrease the size of an image in powerp
 Next, let's look at the quantization operation.
 
 ### Quantization of an image
+Image quantization refers to discretizing the intensity values of the image per channel. This is somewhat related to changing the *color depth* of each channel. If you recall, when we printed the values of the `img` a while ago, we found that we have an array with integer values. If you inspect it closely, you'll find that the integer values take on the values of 0 to 255 only. This is because our image currently has a quantization of `8-bits` per color channel which means that each channel can take on values of $2^8 = 256$ integers. This `8-bits` per channel correspond to the *24-bit True Color* depth, wherein we have a total of 16,777,216 colors to represent each pixel.
 
+Let's look convert our titan image into an `8-bit` image, and see how this picture would look like in old-school consoles!
 
+```python
+# Initialize figure
+fig, axes = plt.subplots(1, 2, figsize=(16, 9))
 
-### Separating the color channels
+# Create bins for each channel
+bins = np.linspace(0, img.max(), 8)
+
+# Quantize the image
+digitized = np.digitize(img, bins)
+quantized = np.vectorize(bins.tolist().__getitem__)(digitized-1).astype(int)
+
+# Show the images
+axes[0].imshow(img)
+axes[1].imshow(quantized)
+
+# Set titles
+axes[0].set_title("24-bit", fontsize=14, weight='bold')
+axes[1].set_title("8-bit", fontsize=14, weight='bold');
+```
+
+![quantized-colossal-titan-img](/assets/images/quantized.png)
+
+Well, it's not as `8-bit`-ety feel as like as those in the video games I used to play in our family computer! Haha. But this is to be expected, since our image is high resolution. Observe that the quantization does not change the resolution of the image but rather how well defined the colors are. In the `8-bit` image, we don't get that continous shadow on the face of the colossal titan as what we saw in the `24-bit` image.
+
+Finally, let's look at how we grayscale an image.
+
+### Converting to gray-scale
+
+This is more straightforward than it looks, we just use the `rgb2gray` function of `skimage`.
+
+```python
+from skimage.color import rgb2gray
+```
+
+Then apply this function on our image.
+
+```python
+# Gray image
+grayed = rgb2gray(img)
+
+# Show image
+io.imshow(grayed);
+```
+
+![grayed-image](/assets/images/grayed.png)
+
+Now this is a bit of magic! Let's dig deep on how `skimage` ends up with this image. It turns out the transformation is very straightforward for converting colored images to grayscale, each pixel is just given a weighted sum depending on the intensities of each color channel. In particular, `skimage` uses the weights of **Cathode Ray Tube (CRT)** phospors as they mimic the human perception of red, blue, and green better than equal weights.
+
+$$
+Y = 0.2125 R + 0.7154 G + 0.0721 B
+$$
+
+## Conclusion
+
+That's it, friends! We've covered some basic concepts of image processing on our very first blog post! Watch out for the next blog post! See you then!
