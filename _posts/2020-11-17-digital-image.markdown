@@ -2,12 +2,12 @@
 layout: post
 title: The Digital Image
 date: 2020-11-17
-description: "A digital image is an image composed of **picture elements**, also known as pixels, each representing a numeric quantity for its intensity or gray level value."
+description: "A digital image is an image composed of <b>picture elements</b>, also known as pixels, each representing a numeric quantity for its intensity or gray level value."
 image: /assets/images/colossal-bw.png
 author: Leo Lorenzo II
 tags: 
   - skimage
-  - Introduction to Image Processing
+  - image processing
 ---
 
 "A digital image is an image composed of **picture elements**, also known as pixels, each representing a numeric quantity for its intensity or gray level value."
