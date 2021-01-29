@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Image Enhancements
-date: 2020-11-17
+date: 2020-11-23
 description: What do you do when a picture doesn't come out right? Do you scrap it? Do you take another shot? Or do you use <i>python</i> on it?
-image: /assets/images/2-image-enhancements/card.png
+image: /assets/images/2-image-enhancements/postcard.png
 author: Leo Lorenzo II
 tags: 
   - skimage
