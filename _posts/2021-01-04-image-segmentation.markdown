@@ -3,7 +3,7 @@ layout: post
 title: Image Segmentation
 date: 2021-01-04
 description: How do you distinguish colors? How do you separate the red, the green, the blue? How about other colors?
-image: /assets/images/4-blob-detection/rbc-bw.png
+image: /assets/images/5-image-segmentation/bags-card.png
 author: Leo Lorenzo II
 tags: 
   - skimage
